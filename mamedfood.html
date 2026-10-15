@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mamed FooD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Mamed FOOD</div>
+    <div class="actions">
+      <button onclick="toggleCart()">🛒 Səbət (<span id="cart-count">0</span>)</button>
+    </div>
+  </header>
+
+  <section class="categories">
+    <h2>Kateqoriyalar</h2>
+    <div class="category-list">
+      <a href="pizza.html" class="category">Pizza🍕 </a>
+      <a href="burger.html" class="category">Burger🍔 </a>
+      <a href="sushi.html" class="category">Suşi🍣 </a>
+      <a href="doner.html" class="category">Dönər🌯 </a>
+      <a href="sendvic.html" class="category">Sandviç🥪 </a>
+      <a href="toyuq.html" class="category">Toyuq🍗 </a>
+      <a href="lahmacun.html" class="category">Lahmacun🥙 </a>
+      <a href="hotdog.html" class="category">Hotdog🌭</a>
+    </div>
+  </section>
+
+  <section class="meslehet">
+    <h2>Önərilənlər</h2>
+    <div class="cards">
+      <a href="pizza.html" class="card">
+        <img src="1/sezar.jpeg" alt="Pizza" width="300" height="100" />
+        <h3>Sezar Pizza</h3>
+      </a>
+      <a href="burger.html" class="card">
+        <img src="2/burger.jpeg" alt="Burger" width="300" height="100" />
+        <h3>Klassik Burger</h3>
+      </a>
+      <a href="sushi.html" class="card">
+        <img src="3/susi.jpg" alt="Suşi" width="300" height="100" />
+        <h3>Tomaqo Suşi Roll</h3>
+      </a>
+      <a href="doner.html" class="card">
+        <img src="4/doner.jpeg" alt="Döner" width="300" height="100"/>
+        <h3>Limuzin Dönər</h3>
+      </a>
+      <a href="sendvic.html" class="card">
+        <!-- 'ç' hərfi 'c' ilə əvəz olundu -->
+        <img src="5/sandviç.jpeg" alt="Sendviç" width="300" height="100"/>
+        <h3>Şarküteri Sandviç</h3>
+      </a>
+      <a href="toyuq.html" class="card">
+        <img src="6/toyuq.jpeg" alt="Toyuq" width="300" height="100"/>
+        <h3>Toyuq Bud</h3>
+      </a>
+      <a href="lahmacun.html" class="card">
+        <img src="7/lahmacun.jpeg" alt="Lahmacun" width="300" height="100"/>
+        <h3>Türk Lahmacunu</h3>
+      </a>
+      <a href="hotdog.html" class="card">
+        <img src="8/hotdog.jpeg" alt="Hotdoq" width="300" height="100"/>
+        <h3>Klassik Hotdog</h3>
+      </a>
+    </div>
+  </section>
+
+  <script>
+    function toggleCart() {
+      alert("Səbət funksiyası hələ aktiv deyil");
+    }
+  </script>
+</body>
+</html>

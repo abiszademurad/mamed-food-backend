@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e3f2fd;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 90%;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 95%;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Giriş</h2>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Şifrə">
+
+    <button onclick="login()">Daxil ol</button>
+
+    <a href="register.html">Qeydiyyatdan keç</a>
+</div>
+
+<script>
+async function login() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!username || !password) {
+        alert("Boş xana ola bilməz");
+        return;
+    }
+
+    try {
+        // Serverə istifadəçi adı və şifrəni göndərib bazada yoxlayırıq
+        const res = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        // Ancaq serverdən success: true gəldikdə (şifrə düz olduqda) keçid edir
+        if (data.success) {
+            alert("Login uğurludur");
+            window.location.href = "mamedfood.html";
+        } else {
+            alert(data.message || "Username və ya şifrə yanlışdır");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Serverə qoşulmaq olmadı");
+    }
+}
+</script>
+
+</body>
+</html>
