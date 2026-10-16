@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="az">
 <head>
@@ -26,6 +27,7 @@
             margin: 10px auto;
             padding: 10px;
             width: 90%;
+            box-sizing: border-box;
         }
 
         button {
@@ -51,8 +53,18 @@
     <h2>Qeydiyyat</h2>
 
     <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Şifrə">
-    <input type="password" id="confirmPassword" placeholder="Şifrəni təkrarla">
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Şifrə"
+    >
+
+    <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Şifrəni təkrarla"
+    >
 
     <button onclick="register()">Qeydiyyatdan keç</button>
 
@@ -62,14 +74,40 @@
 <script>
 async function register() {
     const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-    if (!username || !password) {
+    // Bütün xanaların doldurulması
+    if (!username || !password || !confirmPassword) {
         alert("Bütün xanaları doldur");
         return;
     }
 
+    // Minimum 8 simvol
+    if (password.length < 8) {
+        alert("Şifrə minimum 8 simvol olmalıdır");
+        return;
+    }
+
+    // Kiçik hərf yoxlanışı
+    if (!/[a-z]/.test(password)) {
+        alert("Şifrədə ən azı 1 kiçik hərf olmalıdır");
+        return;
+    }
+
+    // Böyük hərf yoxlanışı
+    if (!/[A-Z]/.test(password)) {
+        alert("Şifrədə ən azı 1 böyük hərf olmalıdır");
+        return;
+    }
+
+    // Rəqəm yoxlanışı
+    if (!/[0-9]/.test(password)) {
+        alert("Şifrədə ən azı 1 rəqəm olmalıdır");
+        return;
+    }
+
+    // Şifrələrin uyğunluğu
     if (password !== confirmPassword) {
         alert("Parollar üst-üstə düşmür");
         return;
@@ -81,7 +119,10 @@ async function register() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({
+                username,
+                password
+            })
         });
 
         const data = await res.json();
